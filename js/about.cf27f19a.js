@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkdaishin"]=self["webpackChunkdaishin"]||[]).push([[443],{7381:function(n,a,s){s.r(a),s.d(a,{default:function(){return d}});var u=s(3396);const i={class:"about"},t=(0,u._)("h1",null,"This is an about page",-1),e=[t];function r(n,a){return(0,u.wg)(),(0,u.iD)("div",i,e)}var c=s(89);const h={},o=(0,c.Z)(h,[["render",r]]);var d=o}}]);
+//# sourceMappingURL=about.cf27f19a.js.map

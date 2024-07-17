@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>네모로직</title>
+  <link rel="stylesheet" href="../../../lib//nemo/Nemo.css">
+  <link rel="stylesheet" href="./nemo-logic.css">
+</head>
+<body>
+    <!-- 네모로직 문제 구역 : START -->
+    <div id="nemo">
+      <!--
+      <div></div>
+      <div>
+        <ul class="number-container-flow number-container-flow-column">
+          <li>1</li>
+          ...
+        </ul>
+      </div>
+      <div>
+        <ul class="number-container-flow number-container-flow-row">
+          <li>1</li>
+          ...
+        </ul>
+      </div>
+      <div>
+        <ul class="nemo-container">
+          <li class="nemo-item" data-idxset="0,0"></li>
+          ...
+        </ul>
+      </div>
+      -->
+    </div>
+    <!-- 네모로직 문제 구역 : END -->
+
+    <!-- 네모로직 컨트롤 구역 : START -->
+    <div class="control-area">
+      <label for="rdoCheckMode1">정답체크</label>
+      <input type="radio" id="rdoCheckMode1" name="rdoCheckMode" value="1" checked>
+      <label for="rdoCheckMode2">X체크</label>
+      <input type="radio" id="rdoCheckMode2" name="rdoCheckMode" value="2">
+      <br><br>
+      <label for="selNemoSize">사이즈 선택</label>
+      <select id="selNemoSize">
+        <option value="5" selected>5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+      </select>
+      <button id="btnNewGame">문제 생성</button>
+      <button id="btnResetGame">다시 하기</button>
+      <br><br>
+      <h4>개발용 버튼</h4>
+      <button id="testshowCorrect">정답데이터 보기</button>
+      <button id="testshowAnswer">체크데이터 보기</button>
+    </div>
+
+
+  <!-- 네모로직 컨트롤 구역 : END -->
+  
+  <script type="module" src="../../js/game/nemo-logic.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+@charset "UTF-8";
+.nemo-container { /* 전체를 감싸는 영역 */
+  display: grid;
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  /* grid-template-columns: '?px auto' */
+}
+.nemo-board { /* 문제 영역 */
+  padding: 0px;
+  display: grid;
+  user-select: none;
+  background-color: #fff;
+  outline: 1px solid #000;
+}
+.nemo-board-cell { /* 문제 칸 */
+  width: 30px;
+  height: 30px;
+  list-style: none;
+  box-sizing: border-box;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  text-align: center;
+}
+.nemo-board-cell.strong-top {
+  border-top: 2px solid #000;
+}
+.nemo-board-cell.strong-right {
+  border-right: 2px solid #000;
+}
+.nemo-board-cell.strong-bottom {
+  border-bottom: 2px solid #000;
+}
+.nemo-board-cell.strong-left {
+  border-left: 2px solid #000;
+}
+.nemo-board-cell.none-right {
+  border-right: none;
+}
+.nemo-board-cell.none-bottom {
+  border-bottom: none;
+}
+
+.number-container-flow {
+  padding: 0;
+  display: grid;
+  text-align: center;
+  background-color: #ffeebb;
+  user-select: none;
+}
+
+.number-container-flow > li {
+  background-color: #ffeebb;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.number-container-flow-column {
+  grid-auto-flow: column;
+}
+
+.number-container-flow-row {
+  padding: 0px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-auto-flow: row;
+  text-align: center;
+  background-color: #ffeebb;
+}
+
+.nemo-container ul > li {
+  list-style: none;
+}
+
+.nemo-container ul {
+  padding: 0;
+  margin: 0;
+}
+
+.nemo-container.complete {
+  border: 1px solid #c7c7c7;
+}
+
+.nemo-item {
+  list-style: none;
+  box-sizing: border-box;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  text-align: center;
+}
+
+.nemo-item-sel {
+  background-color: #607d8b;
+}
+
+.nemo-item-sel-x {
+  background-image: url("./close.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}

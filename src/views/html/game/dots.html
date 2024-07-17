@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+.dot-scale{
+  transform: scale(1.5, 1.5);
+}
+.dotdot{
+    width:8px; height:8px; border-radius:50%; background:#FF9800; position:absolute;
+    font-size: 13px; color:black;
+}
+.dotdot:hover{
+  -ms-transform: scale(1.5, 1.5); /* IE 9 */
+  -webkit-transform: scale(1.5, 1.5); /* Safari */
+  transform: scale(1.5, 1.5);
+  cursor:pointer;
+
+}
+body {
+  margin: 0;
+}
+
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+var cccc = 15;
+
+var canvas = null;
+var cWidth = 0;
+var cHeight = 0;
+var lastNum = 1;
+var nextNum = 2;
+var timer = null;
+var clearNum = -1;
+var timerRun = false;
+var name = "없음";
+
+
+
+$(document).ready(function(){
+
+
+
+  // 점 클릭 이벤트
+  $("#dotLinkArea").on("click", ".dotdot", function(){
+
+
+
+
+
+      var tNum = $(this).data("value");
+
+      if(!timerRun){
+          timerRun = true;
+          timer = setInterval("fn_timer()", 1000); // 3000ms(3초)가 경과하면 ozit_timer_test() 함수를 실행합니다.
+      }
+
+
+
+      if( tNum == lastNum || tNum != lastNum+1 ){
+        return false;
+      }
+
+      // 점잇기
+      fn_drawLine();
+
+      $("#dot"+lastNum).removeClass("dot-scale");
+
+      fn_lastNumSet(tNum);
+  });
+
+  // 캔버스 초기화
+  fn_canvasInit();
+
+// 기록 가져오기
+  fn_getHistory();
+
+  // 점 만들기
+  fn_createDot(cccc);
+
+  name = prompt('이름을 입력하세요', '홍길동');
+
+
+
+
+});
+
+
+// 기록가져오기
+function fn_getHistory(){
+  console.log("기로가져오기");
+  if(localStorage.length > 0){
+      var his = localStorage.getItem("history");
+
+      if(typeof his != "undefined" && his != "" && his != null){
+        var array = his.split("/");
+        for(var i=0; i<array.length-1; i++){
+            $("#history ul").prepend("<li>"+array[i]+"</li>");
+        }
+
+      }
+      console.log(his);
+  }
+
+
+
+}
+
+// 타이머
+function fn_timer(){
+
+    if(lastNum == clearNum) {
+        clearInterval(timer);
+        timerRun = false;
+        alert("축하합니다! " + name + " 님의 기록은 " + $("#timer span").text() + "초 입니다.");
+
+          // 기록저장
+          localStorage.setItem('history', (localStorage.getItem("history") == null ? "" : localStorage.getItem("history")) + name + " : " + $("#timer span").text()+"초/");
+         location.reload();
+    }
+    else{
+      $("#timer span").text(parseInt($("#timer span").text()) + 1);
+    }
+
+
+
+
+}
+/**
+ * 캔버스 초기화
+ */
+function fn_canvasInit(){
+
+  canvas = document.getElementById("myCanvas");
+  cWidth = canvas.width - 10;
+  cHeight = canvas.height - 10;
+
+}
+
+// 선그리기
+function fn_drawLine(){
+
+  var ctx = canvas.getContext("2d");
+
+
+  ctx.moveTo($("#dot"+lastNum).data("x"), $("#dot"+lastNum).data("y"));
+  ctx.lineTo($("#dot"+nextNum).data("x"), $("#dot"+nextNum).data("y"));
+  ctx.stroke();
+}
+
+
+/**
+ * 점 만들긔! >_<
+ */
+function fn_createDot(cnt){
+
+  // 점 포지션 값 arr
+  clearNum = cnt;
+  var befPosSb = "/-50:-50/";
+  var addEle = "";
+  var pos = {};
+
+  for(var i = 1; i <= cnt; i++) {
+    // 값 검사
+    do{
+      pos = fn_getDotPosition();
+    }while( befPosSb.indexOf("/"+pos.x+":"+pos.y+"/") >= 0 );
+
+    befPosSb = befPosSb + pos.x + ":" + pos.y + "/";
+
+    // 요소 추가
+
+    addEle = $("#dotClone").clone();
+    $(addEle).prop("id", "dot"+i).text(i);
+    $(addEle).data("value", i);
+    $(addEle).data("x", pos.x);
+    $(addEle).data("y", pos.y);
+
+
+    addEle.css({"left": pos.x + "px", "top": pos.y + "px"});
+    if(i == 1 || i == cnt){
+      addEle.css("background","#2196f3");
+    }
+    $("#dotLinkArea").append(addEle);
+  }
+
+  // 시작요소 선택
+  fn_lastNumSet(1);
+
+  $("#dotClone").hide();
+}
+
+/**
+ * 점 위치 값 얻긔! >_<
+ */
+function fn_getDotPosition(){
+
+  var x = 0;
+  var y = 0;
+  var ranNum = 0;
+
+  ranNum = Math.floor(Math.random() * cWidth-1);
+  x = ranNum;
+  ranNum = Math.floor(Math.random() * cHeight-1);
+  y = ranNum;
+
+  var pos = {
+        "x" : x
+      , "y" : y
+  };
+
+  return pos;
+
+}
+
+/**
+ * 정답인 현재 번호 값 및 스타일 세팅
+ */
+function fn_lastNumSet(num){
+    $("#dot"+num).addClass("dot-scale");
+    lastNum = num;
+    nextNum = num+1;
+}
+
+</script>
+
+</head>
+
+<body>
+
+
+<div id="dotLinkArea">
+    <div id="dotClone" class="dotdot"></div>
+</div>
+
+
+  <canvas id="myCanvas" width="1600" height="900" style="border:1px solid #ffc107; box-sizing:border-box;"></canvas>
+
+<p id="timer" style="font-size:30px;"><span>0</span>초</p>
+
+<div id="history">
+ <ul>
+
+ </ul>
+
+</div>
+
+</body>
+</html>

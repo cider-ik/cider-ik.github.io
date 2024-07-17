@@ -1,0 +1,18 @@
+body, div, ul {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.control-area {
+  width: fit-content;
+  height: fit-content;
+  display: block;
+  border: 1px solid #000;
+  margin: 30px auto 0 auto;
+  padding: 15px;
+  position: relative;
+}

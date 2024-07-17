@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>welcome to nemo!</title>
+    <style>
+      li {
+        list-style: none;
+      }
+
+      a {
+        color: #000;
+        text-decoration: none;
+      }
+
+      .menu-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-gap: 0;
+        margin: 50px auto;
+        width: 50%;
+        height: 500px;
+      }
+      .menu-item {
+        background-color: #fff;
+        border-right: 1px solid #000;
+        border-bottom: 1px solid #000;
+        font-size: 1.2em;
+        font-weight: 900;
+      }
+      .menu-item:nth-child(-n+3) {
+        border-top: 1px solid #000;
+      }
+      .menu-item:nth-child(3n+1) {
+        border-left: 1px solid #000;
+      }
+      .menu-item > a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <ul class="menu-container">
+        <li class="menu-item"><a href="src/views/html/game/nemo-logic.html">네모로직</a></li>
+        <li class="menu-item"><a href="src/views/html/game/dots.html">점잇기</a></li>
+        <li class="menu-item"><a href="#"></a></li>
+        <li class="menu-item"><a href="#"></a></li>
+        <li class="menu-item"><a href="#"></a></li>
+        <li class="menu-item"><a href="#"></a></li>
+        <li class="menu-item"><a href="#"></a></li>
+      </ul>
+    </div>
+  </body>
+</html>

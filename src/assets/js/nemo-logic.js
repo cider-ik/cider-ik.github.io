@@ -1,4 +1,4 @@
-import Nemo from '../../../lib/nemo/Nemo.js';
+import Nemo from '../../lib/nemo/Nemo.js';
 
 /**
  * document ready

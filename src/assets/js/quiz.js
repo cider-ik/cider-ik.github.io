@@ -106,8 +106,13 @@ document.addEventListener('DOMContentLoaded', function() {
     cell.addEventListener('click', function() {
       const curData = quizMatrix[Number(this.getAttribute('data-index'))];
       if (curData.isFlip) {
+
+        const userAgent = navigator.userAgent;
+        let url = curData.url;
+        if (/android/i.test(userAgent.toLowerCase()) || /iPad|iPhone|iPod/.test(userAgent)) {
+          url = `intent://${curData.url.replace('https://', '')}#Intent;scheme=http;package=com.sec.android.app.sbrowser;end`;
+        }
         
-        const url = `intent://${curData.url.replace('https://', '')}#Intent;scheme=http;package=com.sec.android.app.sbrowser;end`;
         // const url = curData.url;
         window.open(url, '_blank');
 

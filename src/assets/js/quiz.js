@@ -10,7 +10,17 @@ function shuffleArray(array) {
   }
   return array;
 }
-
+function openFullscreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.mozRequestFullScreen) { // Firefox
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    element.webkitRequestFullscreen();
+  } else if (element.msRequestFullscreen) { // IE/Edge
+    element.msRequestFullscreen();
+  }
+}
 const quizMatrix = [
   { title: '국기보고나라', url: 'https://machugi.io/quiz/w9jeTHbBLaQOqcSvYhUh', isFlip: false },
   { title: '종합인물', url: 'https://machugi.io/quiz/GpLwmKGcojRWwiXnGmJv', isFlip: false },
@@ -83,5 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
           curData.isFlip = true;
         }
       });
+  });
+
+  document.getElementById('floatingButton').addEventListener('click', function() {
+    openFullscreen(document.documentElement); // 전체 문서에 대해 전체 화면 요청
   });
 });

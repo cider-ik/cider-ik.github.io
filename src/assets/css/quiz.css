@@ -59,7 +59,7 @@ html, body {
 }
 
 .matrix li .back {
-  background-color: #009688;
+  background-color: #000000;
   color: white;
   transform: rotateY(180deg);
 }
@@ -77,4 +77,14 @@ html, body {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s;
+}
+
+.matrix li .back.team1 {
+  background: red;
+}
+.matrix li .back.team2 {
+  background: #ffc107;
+}
+.matrix li .back.team3 {
+  background: #009688;
 }

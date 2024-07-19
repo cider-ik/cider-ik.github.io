@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
       innerDiv.classList.add('inner');
       const frontDiv = document.createElement('div');
       frontDiv.classList.add('front');
-      frontDiv.textContent = i;
+      frontDiv.textContent = i + 1;
       const backDiv = document.createElement('div');
       backDiv.classList.add('back');
       backDiv.textContent = quizMatrix[i].title;
@@ -88,6 +88,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const curData = quizMatrix[Number(this.getAttribute('data-index'))];
         if (curData.isFlip) {
           window.open(curData.url);
+          const winNum = prompt('이긴팀 번호입력');
+          const backElements = cell.querySelectorAll('.back');
+          const firstBackElement = backElements[0];
+          firstBackElement.classList.add(`team${winNum}`);
         } else {
           cell.classList.toggle('flip');
           curData.isFlip = true;

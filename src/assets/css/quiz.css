@@ -1,0 +1,65 @@
+/* styles.css 파일 */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  /* gap: 1px; 셀 사이의 간격을 줄이려면 이 값을 조정 */
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  list-style-type: none;
+}
+
+.matrix li {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+  border: 2px solid black;
+}
+
+.matrix li .inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.matrix li.flip .inner {
+  transform: rotateY(180deg);
+}
+
+.matrix li .front, .matrix li .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.matrix li .front {
+  background-color: white;
+  color: black;
+}
+
+.matrix li .back {
+  background-color: #009688;
+  color: white;
+  transform: rotateY(180deg);
+}

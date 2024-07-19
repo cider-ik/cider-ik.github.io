@@ -9,6 +9,21 @@
 <body>
     <ul class="matrix"></ul>
     <button id="floatingButton">Full</button>
+  
+    <div id="popup" class="popup-overlay">
+      <div class="popup-content">
+          <h2>이건팀 번호를 선택</h2>
+          <label><input type="radio" name="option" value="1" checked> 1</label>
+          <label><input type="radio" name="option" value="2"> 2</label>
+          <label><input type="radio" name="option" value="3"> 3</label>
+          <label><input type="radio" name="option" value="4"> 4</label>
+          <br>
+          <br>
+          <br>
+          <button onclick="confirmSelection()">확인</button>
+      </div>
+    </div>
+
     <script src="/src/assets/js/quiz.js"></script>
 </body>
 </html>

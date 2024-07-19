@@ -21,6 +21,25 @@ function openFullscreen(element) {
     element.msRequestFullscreen();
   }
 }
+
+function showPopup() {
+  document.getElementById('popup').style.display = 'flex';
+}
+
+let curCell = null;
+function confirmSelection() {
+  if (curCell == null) {
+    return;
+  }
+  const selectedOption = document.querySelector('input[name="option"]:checked');
+  if (selectedOption) {
+      const backElements = curCell.querySelectorAll('.back');
+      const firstBackElement = backElements[0];
+      firstBackElement.classList.add(`team${selectedOption.value}`);
+      document.getElementById('popup').style.display = 'none';
+  }
+}
+
 const quizMatrix = [
   { title: '국기보고나라', url: 'https://machugi.io/quiz/w9jeTHbBLaQOqcSvYhUh', isFlip: false },
   { title: '종합인물', url: 'https://machugi.io/quiz/GpLwmKGcojRWwiXnGmJv', isFlip: false },
@@ -84,19 +103,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   document.querySelectorAll('.matrix li').forEach(function(cell) {
-      cell.addEventListener('click', function() {
-        const curData = quizMatrix[Number(this.getAttribute('data-index'))];
-        if (curData.isFlip) {
-          window.open(curData.url);
-          const winNum = prompt('이긴팀 번호입력');
-          const backElements = cell.querySelectorAll('.back');
-          const firstBackElement = backElements[0];
-          firstBackElement.classList.add(`team${winNum}`);
-        } else {
-          cell.classList.toggle('flip');
-          curData.isFlip = true;
-        }
-      });
+    cell.addEventListener('click', function() {
+      const curData = quizMatrix[Number(this.getAttribute('data-index'))];
+      if (curData.isFlip) {
+        window.open(curData.url);
+        curCell = this;
+        showPopup();
+      } else {
+        this.classList.toggle('flip');
+        curData.isFlip = true;
+      }
+    });
   });
 
   document.getElementById('floatingButton').addEventListener('click', function() {
